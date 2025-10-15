@@ -1,0 +1,29 @@
+services:
+  api:
+    container_name: "access_manager"
+    build:
+      context: .
+      dockerfile: Dockerfile.multi
+    ports:
+      - 8001:8080 # cambio el puerto del local host para que no se pide con la salida a ladb del otro repo
+    environment:
+      DB_USER: sa
+      DB_PASSWORD: password
+      DB_NAME: compose-db
+      DB_HOST: postgres_db
+      DB_PORT: 5432
+
+  db:
+    container_name: postgres_db
+    image: postgres:16
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_USER: access_manager
+      POSTGRES_PASSWORD: access_manager
+      POSTGRES_DB: compose-db
+    volumes:
+      - pgdata:/var/lib/postgresql/data #para guardar de forma persistente
+      - ./db/init:/docker-entrypoint-initdb.d
+volumes:
+  pgdata:
