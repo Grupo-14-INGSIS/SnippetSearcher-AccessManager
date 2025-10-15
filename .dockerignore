@@ -3,7 +3,6 @@
 .gitignore
 
 # --- Archivos temporales o de entorno ---
-README.md
 *.log
 *.tmp
 

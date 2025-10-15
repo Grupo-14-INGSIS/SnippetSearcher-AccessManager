@@ -8,6 +8,9 @@ COPY . .
 # RUN gradle build -x test
 # As for now, add everything until tasks are implemented
 RUN gradle bootJar -x test
+RUN gradle build
+
+#líneas 10 y 11 quedan ambas x las dudas
 
 # This generates a first image, containing the compiled .jar file
 
