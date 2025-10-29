@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SnippetSearcherAccessManagerApplication
+class SnippetSearcherAccessManagerApp
 
 fun main(args: Array<String>) {
-    runApplication<SnippetSearcherAccessManagerApplication>(*args)
+    runApplication<SnippetSearcherAccessManagerApp>(*args)
 }
