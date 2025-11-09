@@ -4,22 +4,18 @@
 FROM gradle:8.8-jdk21 AS build
 WORKDIR /app
 COPY . .
-# Compile source code and generate .jar, except for task "test"
-# RUN gradle build -x test
-# As for now, add everything until tasks are implemented
 RUN gradle bootJar -x test
-RUN gradle build
-
-#líneas 10 y 11 quedan ambas x las dudas
-
-# This generates a first image, containing the compiled .jar file
 
 # Stage 2: runtime
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
-# Copy .jar file from first image
-COPY --from=build /app/build/libs/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Stage 2 does not use Gradle, so it is not necessary to run gradle build
+RUN mkdir -p /usr/local/newrelic
+ADD ./newrelic/newrelic.jar /usr/local/newrelic/newrelic.jar
+ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
+
+# Usa el nombre exacto del JAR
+COPY --from=build /app/build/libs/SnippetSearcher-UserManager-1.0-SNAPSHOT.jar /app/app.jar
+
+EXPOSE 8081
+ENTRYPOINT ["java","-javaagent:/usr/local/newrelic/newrelic.jar","-jar","/app/app.jar"]

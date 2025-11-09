@@ -1,18 +1,15 @@
 spring:
   application:
-    name: snippet-searcher-access-manager
-  #datasource:
-  #  url: jdbc:postgresql://postgres:5432/userdb
-  #  username: postgres
-  #  password: password
-  #jpa:
-  #  hibernate:
-  #    ddl-auto: update
-  #  show-sql: true
+    name: snippet-searcher-runner
+  datasource:
+    url: jdbc:postgresql://host.docker.internal:5432/userdb
+    username: postgres
+    password: password
+   # driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 server:
   port: 8081
-
-#jwt:
-#  secret: tu-super-secreto-jwt-key-minimo-256-bits
-#  expiration: 86400000 # 24 horas en ms
