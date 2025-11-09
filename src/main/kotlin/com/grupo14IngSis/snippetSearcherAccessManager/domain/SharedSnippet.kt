@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "shared_snippets")
+@Table(name = "permission")
 data class SharedSnippet(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,15 +14,8 @@ data class SharedSnippet(
     val snippetId: Long,
 
     @Column(nullable = false)
-    val ownerId: String,
+    val userId: String,
 
     @Column(nullable = false)
-    val sharedWithUserId: String,
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    val permission: Permission = Permission.READ,
-
-    @Column(nullable = false)
-    val sharedAt: LocalDateTime = LocalDateTime.now()
+    val can_execute: Boolean = false,
 )
