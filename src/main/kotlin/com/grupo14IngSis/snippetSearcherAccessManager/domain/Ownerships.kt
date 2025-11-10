@@ -7,7 +7,7 @@ import jakarta.persistence.Column
 
 @Entity
 @Table(name = "ownerships")
-data class Ownership(
+data class Ownerships(
     @Id
     val snippetId: String,
 

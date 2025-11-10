@@ -14,12 +14,10 @@ Check if user has permission for a snippet
 GET /permissions?userId={user_id}&snippetId={snippet_id}
 response:
 {
-    "permissionId":{permission_id},
     "userId":{user_id},
     "snippetId":{snippet_id},
     "role":"owner"/"shared"/"none"
 }
-* permissionId is empty if role is "none"
 
 Create permission
 POST /permissions
@@ -31,7 +29,6 @@ body:
 }
 response:
 {
-    "permissionId":{permission_id},
     "userId":{user_id},
     "snippetId":{snippet_id},
     "role":"owner"/"shared"

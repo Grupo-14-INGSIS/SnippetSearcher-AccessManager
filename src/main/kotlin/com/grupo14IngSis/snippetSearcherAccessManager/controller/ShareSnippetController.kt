@@ -1,8 +1,7 @@
 package com.grupo14IngSis.snippetSearcherAccessManager.controller
 
 import com.grupo14IngSis.snippetSearcherAccessManager.dto.*
-import com.grupo14IngSis.snippetSearcherAccessManager.service.ShareSnippetService
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties
+import com.grupo14IngSis.snippetSearcherAccessManager.service.PermissionService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -12,7 +11,7 @@ import org.springframework.security.oauth2.jwt.Jwt
 @RestController
 @RequestMapping("/api/snippets/share")
 class ShareSnippetController(
-    private val shareSnippetService: ShareSnippetService
+    private val shareSnippetService: PermissionService
 ) {
 
     @PostMapping
