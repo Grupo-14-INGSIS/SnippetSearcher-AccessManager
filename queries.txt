@@ -1,0 +1,18 @@
+ownerships (snippet_id, owner_id) -> snippet_id is primary key to avoid duplicates
+shares (snippet_id, user_id) -> No primary key
+
+Get all permissions with roles:
+SELECT o.snippet_id AS snippet_id, o.owner_id AS user_id, "owner" as role
+FROM ownerships AS o
+UNION ALL
+SELECT s.snippet_id AS snippet_id, s.user_id AS user_id, "shared" as role
+FROM shares;
+
+Search:
+SELECT o.snippet_id AS snippet_id, o.owner_id AS user_id, "owner" as role
+FROM ownerships AS o
+WHERE o.snippet_id = {snippet_id} AND o.owner_id = {user_id}
+UNION ALL
+SELECT s.snippet_id AS snippet_id, s.user_id AS user_id, "shared" as role
+FROM shares
+WHERE s.snippet_id = {snippet_id} AND s.user_id = {user_id};

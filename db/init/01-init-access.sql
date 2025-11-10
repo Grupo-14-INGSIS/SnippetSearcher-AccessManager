@@ -1,6 +1,10 @@
-CREATE TABLE IF NOT EXISTS permission (
-    id BIGSERIAL PRIMARY KEY,
-    snippet_id BIGINT NOT NULL,
-    user_id VARCHAR(255) NOT NULL,
-    can_execute BOOLEAN NOT NULL DEFAULT FALSE
+CREATE TABLE IF NOT EXISTS ownerships (
+    snippet_id VARCHAR(255) PRIMARY KEY NOT NULL,
+    owner_id VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS shares (
+    snippet_id VARCHAR(255) NOT NULL,
+    user_id VARCHAR(255) NOT NULL,
+    PRIMARY KEY (snippet_id, user_id)
+)

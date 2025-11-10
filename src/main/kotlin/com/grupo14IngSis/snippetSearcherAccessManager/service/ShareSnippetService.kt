@@ -1,6 +1,6 @@
 package com.grupo14IngSis.snippetSearcherAccessManager.service
 
-import com.grupo14IngSis.snippetSearcherAccessManager.domain.Permission
+import com.grupo14IngSis.snippetSearcherAccessManager.domain.Shared
 import com.grupo14IngSis.snippetSearcherAccessManager.domain.SharedSnippet
 import com.grupo14IngSis.snippetSearcherAccessManager.dto.ShareSnippetResponse
 import com.grupo14IngSis.snippetSearcherAccessManager.dto.UserSearchResponse
@@ -36,7 +36,7 @@ class ShareSnippetService(
             snippetId = snippetId,
             ownerId = ownerId,
             sharedWithUserId = sharedWithUserId,
-            permission = Permission.READ
+            permission = Shared.READ
         )
 
         val saved = sharedSnippetRepository.save(sharedSnippet)
