@@ -2,15 +2,16 @@ package com.grupo14IngSis.snippetSearcherAccessManager.domain
 
 enum class Role {
     OWNER,
-    SHARED;
+    SHARED,
+    ;
 
     override fun toString(): String {
         return this.name.lowercase()
     }
 
     companion object {
-        fun fromString(roleString: String): Role? {
-            return entries.find { it.name.equals(roleString, ignoreCase = true) }
+        fun fromString(role: String): Role? {
+            return entries.find { it.name.equals(role, ignoreCase = true) }
         }
     }
 }

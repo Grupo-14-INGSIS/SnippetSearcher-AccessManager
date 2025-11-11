@@ -7,13 +7,15 @@ import org.springframework.transaction.annotation.Transactional
 
 @Repository
 interface OwnershipsRepository : JpaRepository<Ownerships, String> {
-
     // save(entry: Ownerships)
 
     // findById(snippetId: String)
 
     @Transactional
-    fun deleteByOwnerIdAndSnippetId(ownerId: String, snippetId: String): Long
+    fun deleteByOwnerIdAndSnippetId(
+        ownerId: String,
+        snippetId: String,
+    ): Long
 
     @Transactional
     fun deleteByOwnerId(ownerId: String): Long

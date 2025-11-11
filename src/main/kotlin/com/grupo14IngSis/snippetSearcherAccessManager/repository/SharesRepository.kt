@@ -8,13 +8,15 @@ import org.springframework.transaction.annotation.Transactional
 
 @Repository
 interface SharesRepository : JpaRepository<Shares, ShareId> {
-
     // save(entry: Shares)
 
     // findById(id: ShareId)
 
     @Transactional
-    fun deleteByUserIdAndSnippetId(userId: String, snippetId: String): Long
+    fun deleteByUserIdAndSnippetId(
+        userId: String,
+        snippetId: String,
+    ): Long
 
     @Transactional
     fun deleteByUserId(userId: String): Long

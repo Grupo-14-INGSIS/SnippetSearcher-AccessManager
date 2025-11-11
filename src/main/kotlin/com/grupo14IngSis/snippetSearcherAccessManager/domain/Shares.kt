@@ -11,7 +11,6 @@ import jakarta.persistence.Table
 data class Shares(
     @Id
     val snippetId: String,
-
     @Id
     val userId: String,
 )
