@@ -1,0 +1,75 @@
+ENDPOINTS:
+
+GET /permissions?userId={user_id}&snippetId={snippet_id}
+POST /permissions
+DELETE /permissions?userId={user_id}&snippetId={snippet_id}
+GET /permissions?snippetId={snippet_id}
+GET /permissions?userId={user_id}
+DELETE /permissions?snippetId={snippet_id}
+DELETE /permissions?userId={user_id}
+
+DETAILS:
+
+Check if user has permission for a snippet
+GET /permissions?userId={user_id}&snippetId={snippet_id}
+response:
+{
+    "userId":{user_id},
+    "snippetId":{snippet_id},
+    "role":"owner"/"shared"/"none"
+}
+
+Create permission
+POST /permissions
+body:
+{
+    "snippetId":{snippet_id},
+    "userId":{user_id},
+    "role":"owner"/"shared"
+}
+response:
+{
+    "userId":{user_id},
+    "snippetId":{snippet_id},
+    "role":"owner"/"shared"
+}
+* If a permission is sent with "owner" role for a snippet with an owner, returns BadRequest
+
+Delete permission
+DELETE /permissions?userId={user_id}&snippetId={snippet_id}
+
+Get all users with permission for a snippet
+GET /permissions?snippetId={snippet_id}
+response:
+{
+    "snippetId":{snippet_id},
+    "ownerId":{owner_id},
+    "shared": [
+        {user_id},
+        {user_id},
+        ...
+    ]
+}
+
+Get all snippet a user has permission for
+GET /permissions?userId={user_id}
+response:
+{
+    "userId":{user_id},
+    "owned":[
+        {snippet_id},
+        {snippet_id},
+        ...
+    ],
+    "shared": [
+        {snippet_id},
+        {snippet_id},
+        ...
+    ]
+}
+
+Delete all users with permission for a snippet
+DELETE /permissions?snippetId={snippet_id}
+
+Delete all snippets a user has permission for
+DELETE /permissions?userId={user_id}
