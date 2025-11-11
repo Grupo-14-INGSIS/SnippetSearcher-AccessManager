@@ -25,7 +25,7 @@ services:
       - pgdata:/var/lib/postgresql/data #para guardar de forma persistente
       - ./db/init:/docker-entrypoint-initdb.d
     networks:
-      - reverse-proxy-netork
+      - reverse-proxy-network
 volumes:
   pgdata:
 
