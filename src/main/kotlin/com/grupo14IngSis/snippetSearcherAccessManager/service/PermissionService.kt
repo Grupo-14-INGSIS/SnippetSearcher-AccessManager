@@ -42,7 +42,7 @@ class PermissionService(
     }
 
     fun getPermissionForUser(userId: String): GetPermissionsForUserResponse {
-        val permissions: List<Permission> = permissionRepository.findPermissionsByUserId(userId = userId)
+        val permissions: List<Permission> = permissionRepository.findPermissionsByUserId(userId)
         val owned: List<String> = permissions.filter { it.role == "owner" }.map { it.snippetId }
         val shared: List<String> = permissions.filter { it.role == "shared" }.map { it.snippetId }
         return GetPermissionsForUserResponse(
@@ -53,7 +53,7 @@ class PermissionService(
     }
 
     fun getPermissionForSnippet(snippetId: String): GetPermissionsForSnippetResponse {
-        val permissions: List<Permission> = permissionRepository.findPermissionsBySnippetId(snippetId = snippetId)
+        val permissions: List<Permission> = permissionRepository.findPermissionsBySnippetId(snippetId)
         val ownerList: List<String> = permissions.filter { it.role == "owner" }.map { it.userId }
         val owner: String
         if (ownerList.isEmpty()) {

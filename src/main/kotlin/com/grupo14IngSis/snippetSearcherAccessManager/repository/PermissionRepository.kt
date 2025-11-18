@@ -26,9 +26,13 @@ interface PermissionRepository : Repository<Ownerships, String> {
 
     @Query(
         value = """
-            SELECT o.snippet_id AS snippetId, o.owner_id AS userId, 'owner' as role FROM ownerships AS o WHERE o.owner_id = :userId
+            SELECT o.snippet_id AS snippetId, o.owner_id AS userId, 'owner' as role
+            FROM ownerships AS o
+            WHERE o.owner_id = :userId
             UNION ALL
-            SELECT s.snippet_id AS snippetId, s.user_id AS userId, 'shared' as role FROM shares AS s WHERE s.user_id = :userId
+            SELECT s.snippet_id AS snippetId, s.user_id AS userId, 'shared' as role
+            FROM shares AS s
+            WHERE s.user_id = :userId
         """,
         nativeQuery = true,
     )
@@ -38,9 +42,13 @@ interface PermissionRepository : Repository<Ownerships, String> {
 
     @Query(
         value = """
-            SELECT o.snippet_id AS snippetId, o.owner_id AS userId, 'owner' as role FROM ownerships AS o WHERE o.snippet_id = :snippetId
+            SELECT o.snippet_id AS snippetId, o.owner_id AS userId, 'owner' as role
+            FROM ownerships AS o
+            WHERE o.snippet_id = :snippetId
             UNION ALL
-            SELECT s.snippet_id AS snippetId, s.user_id AS userId, 'shared' as role FROM shares AS s WHERE s.snippet_id = :snippetId
+            SELECT s.snippet_id AS snippetId, s.user_id AS userId, 'shared' as role
+            FROM shares AS s
+            WHERE s.snippet_id = :snippetId
         """,
         nativeQuery = true,
     )

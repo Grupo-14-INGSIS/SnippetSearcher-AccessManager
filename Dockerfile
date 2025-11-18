@@ -15,7 +15,7 @@ ADD ./newrelic/newrelic.jar /usr/local/newrelic/newrelic.jar
 ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
 
 # Usa el nombre exacto del JAR
-COPY --from=build /app/build/libs/SnippetSearcher-UserManager-1.0-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/build/libs/SnippetSearcher-AccessManager-1.0-SNAPSHOT.jar /app/app.jar
 
 EXPOSE 8081
 ENTRYPOINT ["java","-javaagent:/usr/local/newrelic/newrelic.jar","-jar","/app/app.jar"]
