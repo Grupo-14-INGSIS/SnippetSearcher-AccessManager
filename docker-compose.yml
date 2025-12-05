@@ -1,11 +1,11 @@
 services:
-  api:
+  access_manager:
     container_name: "access_manager"
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "19081:8080"
+      - "19082:8080"
     environment:
       DB_USER: access_manager
       DB_PASSWORD: access_manager
@@ -14,6 +14,8 @@ services:
       DB_PORT: 5432
     depends_on:
       - accessmanager-db
+    networks:
+      - snippet-searcher-develop
 
   accessmanager-db:
     container_name: "accessmanager-db"
@@ -27,6 +29,12 @@ services:
     volumes:
       - accessmanager-pgdata:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d
+    networks:
+      - snippet-searcher-develop
 
 volumes:
   accessmanager-pgdata:
+
+networks:
+  snippet-searcher-develop:
+    external: true
