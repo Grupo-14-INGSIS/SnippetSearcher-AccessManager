@@ -130,10 +130,10 @@ jobs:
                  -H "Authorization: Bearer ${{ secrets.PAT }}" \
                  -H "X-GitHub-Api-Version: 2022-11-28" \
                  https://api.github.com/repos/Grupo-14-INGSIS/SnippetSearcher-Infrastructure/dispatches \
-                 -d '{
-                   "event_type": "new-image-ready",
-                   "client_payload": {
-                       "environment": "production",
-                       "service": "snippetsearcher-accessmanager"
-                                                     }
-                 }'
+                 -d "{
+                   \"event_type\": \"new-image-ready\",
+                   \"client_payload\": {
+                       \"environment\": \"production\",
+                       \"service\": \"snippet-service\"
+                       }
+                 }"
