@@ -134,6 +134,6 @@ jobs:
              -d "{
                \"event_type\": \"deploy_from_service\",
                \"client_payload\": {
-                 \"branch\": \"$branch\",
+                 \"branch\": \latest\",
                  \"service\": \"snippet-service\"
                }
