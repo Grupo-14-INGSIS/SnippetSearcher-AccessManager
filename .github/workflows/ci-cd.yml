@@ -6,11 +6,6 @@ permissions:
 
 on:
   push:
-    branches:
-      - main
-  pull_request:  # ← AGREGADO: También correr en PRs
-    branches:
-      - main
 
 jobs:
   ci-cd:
