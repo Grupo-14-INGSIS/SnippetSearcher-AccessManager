@@ -115,15 +115,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ghcr.io/grupo-14-ingsis/snippetsearcher-accessmanager:latest
+        run: |
+          branch=${GITHUB_REF_NAME}
+          docker build -t ghcr.io/grupo-14-ingsis/snippetsearcher-accessmanager:$branch .
+          docker push ghcr.io/grupo-14-ingsis/snippetsearcher-accessmanager:$branch
 
       - name: Dispatch to infrastructure repository
         run: |
+          branch=${GITHUB_REF_NAME}
           curl -v -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
@@ -133,6 +132,7 @@ jobs:
             -d "{
               \"event_type\": \"deploy_from_service\",
               \"client_payload\": {
-                \"branch\": \"$branch\",
-                \"service\": \"snippet-service\"
+                \"environment\": \"$branch\",
+                \"service\": \"snippetsearcher-accessmanager\"
               }
+            }"
