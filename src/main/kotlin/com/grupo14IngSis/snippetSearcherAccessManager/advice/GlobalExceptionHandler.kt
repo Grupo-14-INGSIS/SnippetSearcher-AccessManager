@@ -1,8 +1,8 @@
 package com.grupo14IngSis.snippetSearcherAccessManager.advice
 
 import com.grupo14IngSis.snippetSearcherAccessManager.dto.ErrorResponse
-import com.grupo14IngSis.snippetSearcherAccessManager.exceptions.BadRequestException
 import jakarta.servlet.http.HttpServletRequest
+import org.apache.coyote.BadRequestException
 import org.slf4j.LoggerFactory
 import org.slf4j.MDC
 import org.springframework.http.HttpStatus
