@@ -26,10 +26,14 @@ interface SharesRepository : JpaRepository<Shares, ShareId> {
     @Transactional
     @Modifying
     @Query("DELETE FROM Shares s WHERE s.userId = :userId")
-    fun deleteByUserId(@Param("userId") userId: String): Long
+    fun deleteByUserId(
+        @Param("userId") userId: String,
+    ): Long
 
     @Transactional
     @Modifying
     @Query("DELETE FROM Shares s WHERE s.snippetId = :snippetId")
-    fun deleteBySnippetId(@Param("snippetId") snippetId: String): Long
+    fun deleteBySnippetId(
+        @Param("snippetId") snippetId: String,
+    ): Long
 }

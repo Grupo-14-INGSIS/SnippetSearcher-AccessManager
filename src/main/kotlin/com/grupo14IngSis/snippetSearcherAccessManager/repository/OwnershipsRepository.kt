@@ -25,10 +25,14 @@ interface OwnershipsRepository : JpaRepository<Ownerships, String> {
     @Transactional
     @Modifying
     @Query("DELETE FROM Ownerships o WHERE o.ownerId = :ownerId")
-    fun deleteByOwnerId(@Param("ownerId") ownerId: String): Long
+    fun deleteByOwnerId(
+        @Param("ownerId") ownerId: String,
+    ): Long
 
     @Transactional
     @Modifying
     @Query("DELETE FROM Ownerships o WHERE o.snippetId = :snippetId")
-    fun deleteBySnippetId(@Param("snippetId") snippetId: String): Long
+    fun deleteBySnippetId(
+        @Param("snippetId") snippetId: String,
+    ): Long
 }
