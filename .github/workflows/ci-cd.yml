@@ -136,4 +136,4 @@ jobs:
                \"client_payload\": {
                  \"branch\": \latest\",
                  \"service\": \"snippet-service\"
-               }
+               }'
