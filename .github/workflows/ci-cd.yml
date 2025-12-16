@@ -137,7 +137,7 @@ jobs:
           -d '{
             "event_type": "new-image-ready",
             "client_payload": {
-              \"branch\": \latest\",
+              "environment": "latest",
               "service": "snippetsearcher-accessmanager"
             }
           }'
