@@ -14,12 +14,14 @@ interface SharesRepository : JpaRepository<Shares, ShareId> {
     // findById(id: ShareId)
 
     @Transactional
+    @Modifying
     fun deleteByUserIdAndSnippetId(
         userId: String,
         snippetId: String,
     ): Long
 
     @Transactional
+    @Modifying
     fun deleteByUserId(userId: String): Long
 
     @Transactional

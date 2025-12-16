@@ -13,12 +13,14 @@ interface OwnershipsRepository : JpaRepository<Ownerships, String> {
     // findById(snippetId: String)
 
     @Transactional
+    @Modifying
     fun deleteByOwnerIdAndSnippetId(
         ownerId: String,
         snippetId: String,
     ): Long
 
     @Transactional
+    @Modifying
     fun deleteByOwnerId(ownerId: String): Long
 
     @Transactional
