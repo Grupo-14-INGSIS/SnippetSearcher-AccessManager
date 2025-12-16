@@ -2,6 +2,7 @@ package com.grupo14IngSis.snippetSearcherAccessManager.repository
 
 import com.grupo14IngSis.snippetSearcherAccessManager.domain.Ownerships
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Modifying
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 
@@ -21,5 +22,6 @@ interface OwnershipsRepository : JpaRepository<Ownerships, String> {
     fun deleteByOwnerId(ownerId: String): Long
 
     @Transactional
+    @Modifying
     fun deleteBySnippetId(snippetId: String): Long
 }
