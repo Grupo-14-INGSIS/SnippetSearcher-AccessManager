@@ -109,20 +109,20 @@ class PermissionService(
     ): Long {
         val deletedOwnerships = ownershipsRepository.deleteByOwnerIdAndSnippetId(ownerId = userId, snippetId = snippetId)
         val deletedShares = sharesRepository.deleteByUserIdAndSnippetId(snippetId = snippetId, userId = userId)
-        return deletedOwnerships + deletedShares
+        return (deletedOwnerships + deletedShares).toLong()
     }
 
     @Transactional
     fun deletePermissionForUser(userId: String): Long {
         val deletedOwnerships = ownershipsRepository.deleteByOwnerId(ownerId = userId)
         val deletedShares = sharesRepository.deleteByUserId(userId = userId)
-        return deletedOwnerships + deletedShares
+        return (deletedOwnerships + deletedShares).toLong()
     }
 
     @Transactional
     fun deletePermissionForSnippet(snippetId: String): Long {
         val deletedOwnerships = ownershipsRepository.deleteBySnippetId(snippetId = snippetId)
         val deletedShares = sharesRepository.deleteBySnippetId(snippetId = snippetId)
-        return deletedOwnerships + deletedShares
+        return (deletedOwnerships + deletedShares).toLong()
     }
 }
