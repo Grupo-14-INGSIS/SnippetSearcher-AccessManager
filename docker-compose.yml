@@ -12,7 +12,7 @@ services:
       DB_NAME: compose-db
       DB_HOST: accessmanager-db
       DB_PORT: 5432
-      NEW_RELIC_APP_NAME: AccessManagerIngsis_dev
+      NEW_RELIC_APP_NAME: ${NEW_RELIC_APP_NAME_ACCESS:-AccessManagerIngsis_dev}
     depends_on:
       - accessmanager-db
     networks:
