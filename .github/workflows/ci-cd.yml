@@ -6,11 +6,10 @@ permissions:
 
 on:
   push:
+  pull_request:
     branches:
       - develop
-  pull_request:  # ← AGREGADO: También correr en PRs
-    branches:
-      - develop
+      - production #si no, cuadno hay merge o push a production no hace redeploy automático
 
 jobs:
   ci-cd:
