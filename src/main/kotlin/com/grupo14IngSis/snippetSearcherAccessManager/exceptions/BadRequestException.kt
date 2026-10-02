@@ -1,3 +1,5 @@
 package com.grupo14IngSis.snippetSearcherAccessManager.exceptions
 
-class BadRequestException(message: String) : RuntimeException(message)
+class BadRequestException(
+    message: String,
+) : RuntimeException(message)

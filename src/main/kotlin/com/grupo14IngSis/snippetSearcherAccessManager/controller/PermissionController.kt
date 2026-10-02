@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/permissions")
-class PermissionController(private val permissionService: PermissionService) {
+class PermissionController(
+    private val permissionService: PermissionService,
+) {
     @GetMapping
     fun getPermission(
         @RequestParam(required = false) userId: String?,
