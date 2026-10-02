@@ -5,13 +5,9 @@ enum class Role {
     SHARED,
     ;
 
-    override fun toString(): String {
-        return this.name.lowercase()
-    }
+    override fun toString(): String = this.name.lowercase()
 
     companion object {
-        fun fromString(role: String): Role? {
-            return entries.find { it.name.equals(role, ignoreCase = true) }
-        }
+        fun fromString(role: String): Role? = entries.find { it.name.equals(role, ignoreCase = true) }
     }
 }
