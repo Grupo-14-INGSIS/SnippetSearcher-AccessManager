@@ -1,33 +1,33 @@
-buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0"
-        classpath "org.jlleitschuh.gradle:ktlint-gradle:12.1.0"
-
-    }
-}
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '2.2.0'
+    id 'buildlogic.kotlin-myPlugin-conventions'
     id 'org.jetbrains.kotlin.plugin.spring' version '2.2.0'
     id 'org.springframework.boot' version '4.0.0'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'org.jetbrains.kotlin.plugin.jpa' version '2.2.0'
-    id 'jacoco'
-}
-apply plugin: 'org.jetbrains.kotlin.jvm'
-apply plugin: 'org.jlleitschuh.gradle.ktlint'
-apply plugin: 'application'
-apply plugin: 'jacoco'  // <-- AGREGÁ ESTA LÍNEA
-
-ktlint {
-    version = "1.4.0"
+    id 'application'
 }
 
+def srcHookPath = "${rootDir}/.githooks/pre-commit"
+def hookFilePath = "${rootDir}/.git/hooks/pre-commit"
+
+tasks.register("installGitHook") {
+    def srcHook = file(srcHookPath)
+    def hookFile = file(hookFilePath)
+
+    outputs.file(hookFile)
+
+    doLast {
+        if (!srcHook.exists()) {
+            println "No hook found in .githooks/pre-commit"
+            return
+        }
+
+        hookFile.parentFile.mkdirs()
+        hookFile.text = srcHook.text
+        hookFile.setExecutable(true)
+        println "Pre-commit was installed/updated in .git/hooks/"
+    }
+}
 
 group = 'com.example'
 version = '1.0-SNAPSHOT'
@@ -111,8 +111,4 @@ application {
 
 kotlin {
     jvmToolchain(21)
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
 }
