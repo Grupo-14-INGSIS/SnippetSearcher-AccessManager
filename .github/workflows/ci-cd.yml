@@ -8,15 +8,8 @@ on:
   push:
   pull_request:
     branches:
-<<<<<<< HEAD
-      - production
-  pull_request:  # ← AGREGADO: También correr en PRs
-    branches:
-      - production
-=======
       - develop
       - production #si no, cuadno hay merge o push a production no hace redeploy automático
->>>>>>> develop
 
 jobs:
   ci-cd:
@@ -126,25 +119,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-<<<<<<< HEAD
-          tags: ghcr.io/grupo-14-ingsis/snippetsearcher-accessmanager:production
-
-      - name: Dispatch to infrastructure repository
-        run: |
-          curl -L \
-                 -X POST \
-                 -H "Accept: application/vnd.github+json" \
-                 -H "Authorization: Bearer ${{ secrets.PAT }}" \
-                 -H "X-GitHub-Api-Version: 2022-11-28" \
-                 https://api.github.com/repos/Grupo-14-INGSIS/SnippetSearcher-Infrastructure/dispatches \
-                 -d "{
-                   \"event_type\": \"new-image-ready\",
-                   \"client_payload\": {
-                       \"environment\": \"production\",
-                       \"service\": \"snippetsearcher-accessmanager\"
-                       }
-                 }"
-=======
           tags: ghcr.io/grupo-14-ingsis/snippetsearcher-accessmanager:${{ github.ref_name }}
           build-args: |
             GITHUB_USERNAME=${{ github.repository_owner }}
@@ -166,4 +140,3 @@ jobs:
                 \"service\": \"snippetsearcher-accessmanager\"
               }
             }"
->>>>>>> develop
