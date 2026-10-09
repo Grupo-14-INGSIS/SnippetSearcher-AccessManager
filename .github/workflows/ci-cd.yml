@@ -54,6 +54,9 @@ jobs:
       - name: Run ktlintCheck
         run: ./gradlew ktlintCheck --quiet
 
+      - name: Run Detekt
+        run: ./gradlew detekt
+
       - name: Run tests
         run: |
           ./gradlew test --continue > .git/test-output.log
@@ -65,8 +68,7 @@ jobs:
 
       - name: Verify coverage
         run: |
-          ./gradlew jacocoTestCoverageVerification --quiet
-          if [ $? -ne 0 ]; then
+          if ! ./gradlew jacocoTestCoverageVerification --quiet; then
             echo "Build bloqueado: cobertura de código inferior al 80%."
             ./gradlew jacocoTestReport
             exit 1
