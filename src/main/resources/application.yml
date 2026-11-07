@@ -11,3 +11,13 @@ spring:
     show-sql: true
 server:
   port: 8080
+
+# App consulta /actuator/health por la red interna para su propio chequeo de salud
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
